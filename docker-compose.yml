@@ -2,6 +2,7 @@ version: "2"
 services:
     mysql-app:
         image: mysql
+        container_name: orange-mysql
         ports:
           - "3306:3306"
         volumes:
@@ -13,26 +14,29 @@ services:
             - MYSQL_PASSWORD=db
     php-app:
         build: "./php"
+        container_name: orange-php
         volumes:
-            - "./www:/var/www"
+            - "/home/nico/Projects/:/var/www"
         links:
-            - elk-app
+#            - elk-app
             - mysql-app
         hostname: "php-app"
     nginx-app:
         image: nginx:1.12
+        container_name: orange-nginx
+#        hostname: orange
+#        domainname: orange.dev
+#        tty: true
         ports:
            - "80:80"
         volumes:
             - "./partials/nginx:/etc/nginx/conf.d"
-            - "./www:/var/www"
-        links:
-            - elk-app
+            - "/home/nico/Projects:/var/www"
         depends_on:
             - php-app
-    elk-app:
-        image: sebp/elk:540
-        ports:
-            - "5601:5601"
-            - "9200:9200"
-            - "5044:5044"
+#    elk-app:
+#        image: sebp/elk:540
+#        ports:
+#            - "5601:5601"
+#            - "9200:9200"
+#            - "5044:5044"
