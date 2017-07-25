@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+nginx/sites-available/
+!nginx/sites-available/default
+.idea
+
+

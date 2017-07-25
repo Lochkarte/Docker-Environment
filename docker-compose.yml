@@ -13,7 +13,7 @@ services:
             - MYSQL_USER=db
             - MYSQL_PASSWORD=db
     php-app:
-        build: "./php"
+        image: nicoorfi/php
         container_name: php
         volumes:
             - "/home/nico/Projects/:/var/www"
