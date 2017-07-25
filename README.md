@@ -8,7 +8,7 @@ Local hosting with [Docker](https://www.docker.com/) environment with [NGINX](ht
  db_password= db
  ````
  
- ##Basics
+ ## Basics
  * Shared projects folder should be located at `home/$USER/Projects` else you have to edit `docker-compose.yml` to set your projects path within the `nginx` section. 
  * Use `dmesg | docker inspect nginx | egrep '"IPAddress": "172\.[0-9]{1,3}\.[0-9]{1,2}\.[0-9]"'` to get your docker ip address and then add it to your hosts.
  
