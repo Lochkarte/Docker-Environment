@@ -17,6 +17,7 @@ services:
         container_name: php
         volumes:
             - "/home/${USER}/Projects/:/var/www"
+            - "/etc/hosts:/etc/hosts"
         links:
             - mysql-app
         hostname: "php-app"
@@ -28,5 +29,6 @@ services:
         volumes:
            - "/home/${USER}/Projects:/var/www"
            - "./nginx:/etc/nginx"
+           - "/etc/hosts:/etc/hosts"
         depends_on:
             - php-app
