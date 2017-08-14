@@ -22,6 +22,9 @@ Local hosting with [Docker](https://www.docker.com/) environment with [NGINX](ht
 #<ip-address>	<hostname.domain.org>	<hostname>
 0.0.0.0		localhost.localdomain	localhost
 172.22.0.4      example.com
+172.22.0.3      example.com
+172.22.0.2      example.com
+172.22.0.1      example.com
 ::1		localhost.localdomain	localhost
  ````
  
