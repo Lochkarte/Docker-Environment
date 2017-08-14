@@ -16,7 +16,7 @@ services:
         image: nicoorfi/php
         container_name: php
         volumes:
-            - "/home/nico/Projects/:/var/www"
+            - "/home/${USER}/Projects/:/var/www"
         links:
             - mysql-app
         hostname: "php-app"
