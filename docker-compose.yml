@@ -13,6 +13,7 @@ services:
             - MYSQL_USER=db
             - MYSQL_PASSWORD=db
     php-app:
+        build: "./php"
         image: nicoorfi/php
         container_name: php
         volumes:
@@ -25,7 +26,7 @@ services:
         image: nginx:1.12
         container_name: nginx
         ports:
-           - "80:80"
+           - "8000:80"
         volumes:
            - "/home/${USER}/Projects:/var/www"
            - "./nginx:/etc/nginx"
