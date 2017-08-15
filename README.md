@@ -12,7 +12,7 @@ Local hosting with [Docker](https://www.docker.com/) environment with [NGINX](ht
  * Shared projects folder should be located at `home/$USER/Projects` else you have to edit `docker-compose.yml` to set your projects path within the `nginx` section. 
  * Use `dmesg | docker inspect nginx | egrep '"IPAddress": "172\.[0-9]{1,3}\.[0-9]{1,2}\.[0-9]"'` to get your docker ip address and then add it to your hosts.
  * A `home/$USER/Projects/html` folder is needed in order `php-app` to start correnctly.
-
+ * If you want to avoid typing `sudo` whenever you run the `docker` command, add your username to the `docker` group:  `sudo usermod -aG docker ${USER}`. 
  ### Hosts
  * On Linux/Mac `sudo vim /etc/hosts` 
  * If you are on Windows, you can find instructions for altering your hosts file [here](http://www.thewindowsclub.com/hosts-file-in-windows).
