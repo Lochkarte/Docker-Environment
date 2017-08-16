@@ -16,17 +16,21 @@ Local hosting with [Docker](https://www.docker.com/) environment with [NGINX](ht
  ### Hosts
  * On Linux/Mac `sudo vim /etc/hosts` 
  * If you are on Windows, you can find instructions for altering your hosts file [here](http://www.thewindowsclub.com/hosts-file-in-windows).
- 
+ * On Linux use `sudo sysctl -w vm.max_map_count=262144` to give to the elastic search container enought memory to start.
+
  Your hosts file on Linux should look like this
  ````
 #<ip-address>	<hostname.domain.org>	<hostname>
 0.0.0.0		localhost.localdomain	localhost
-172.22.0.4      example.com
-172.22.0.3      example.com
-172.22.0.2      example.com
-172.22.0.1      example.com
+10.5.0.4      example.com
+10.5.0.5      example.com
+10.5.0.6      example.com
+10.5.0.7      example.com
 ::1		localhost.localdomain	localhost
  ````
+ 
+### Elastic Search 
+* Version: 1.7.3 
  
 ### PHP
 * Version: 7.1.6

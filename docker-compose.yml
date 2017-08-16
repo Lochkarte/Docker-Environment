@@ -3,6 +3,9 @@ services:
     mysql-app:
         image: mysql
         container_name: mysql
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.4
         ports:
           - "3306:3306"
         volumes:
@@ -14,22 +17,50 @@ services:
             - MYSQL_PASSWORD=db
     php-app:
         build: "./php"
-        image: nicoorfi/php
+#        image: nicoorfi/php
         container_name: php
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.5
         volumes:
             - "/home/${USER}/Projects/:/var/www"
             - "/etc/hosts:/etc/hosts"
         links:
+            - elk-app
             - mysql-app
         hostname: "php-app"
     nginx-app:
         image: nginx:1.12
         container_name: nginx
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.6
         ports:
            - "8000:80"
         volumes:
            - "/home/${USER}/Projects:/var/www"
            - "./nginx:/etc/nginx"
            - "/etc/hosts:/etc/hosts"
+        links:
+            - elk-app
         depends_on:
             - php-app
+    elk-app:
+        image: sebp/elk:540
+        container_name: es
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.7
+        ports:
+            - "5601:5601"
+            - "9200:9200"
+            - "5044:5044"
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
+volumes:
+    mysql-data:
