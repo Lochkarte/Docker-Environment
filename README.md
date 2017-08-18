@@ -16,7 +16,7 @@ Local hosting with [Docker](https://www.docker.com/) environment with [NGINX](ht
  ### Hosts
  * On Linux/Mac `sudo vim /etc/hosts` 
  * If you are on Windows, you can find instructions for altering your hosts file [here](http://www.thewindowsclub.com/hosts-file-in-windows).
- * On Linux use `sudo sysctl -w vm.max_map_count=262144` to give to the elastic search container enought memory to start.
+ * On Linux use `sudo sysctl -w vm.max_map_count=262144` to give to the elastic search container enought memory to start. To make this change permanent you have to add `vm.max_map_count=262144` to your `/etc/sysctl.conf` as root.
 
  Your hosts file on Linux should look like this
  ````
