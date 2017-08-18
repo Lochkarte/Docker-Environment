@@ -55,6 +55,16 @@ services:
             - "5601:5601"
             - "9200:9200"
             - "5044:5044"
+    selenium-app:
+        image: selenium/standalone-chrome
+        container_name: selenium
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.8
+        ports:
+           - "4444:4444"
+        volumes:
+            - "/etc/hosts:/etc/hosts"
 networks:
   vpcbr:
     driver: bridge
