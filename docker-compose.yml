@@ -10,6 +10,8 @@ services:
           - "3306:3306"
         volumes:
             - "./mysql:/var/lib/mysql:rw"
+        links:
+            - redis-app
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=db
@@ -28,6 +30,7 @@ services:
         links:
             - elk-app
             - mysql-app
+            - redis-app
         hostname: "php-app"
     nginx-app:
         image: nginx:1.12
@@ -43,6 +46,7 @@ services:
            - "/etc/hosts:/etc/hosts"
         links:
             - elk-app
+            - redis-app
         depends_on:
             - php-app
     elk-app:
@@ -55,6 +59,8 @@ services:
             - "5601:5601"
             - "9200:9200"
             - "5044:5044"
+        volumes:
+            - elk-data:/var/lib/elasticsearch
     selenium-app:
         image: selenium/standalone-chrome
         container_name: selenium
@@ -63,6 +69,16 @@ services:
             ipv4_address: 10.5.0.8
         ports:
            - "4444:4444"
+        volumes:
+            - "/etc/hosts:/etc/hosts"
+    redis-app:
+        image: library/redis
+        container_name: redis
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.9
+        ports:
+           - "6379:6379"
         volumes:
             - "/etc/hosts:/etc/hosts"
 networks:
@@ -74,3 +90,4 @@ networks:
          gateway: 10.5.0.1
 volumes:
     mysql-data:
+    elk-data:

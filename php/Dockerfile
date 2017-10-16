@@ -18,3 +18,5 @@ RUN apt-get update && apt-get -y install libz-dev libmemcached-dev libmemcached1
 && apt-get autoremove -y \
 && apt-get clean \
 && rm -rf /tmp/pear
+
+RUN pecl install -o -f redis xdebug     && rm -rf /tmp/pear     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini     && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
