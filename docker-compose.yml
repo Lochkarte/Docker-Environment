@@ -50,7 +50,7 @@ services:
         depends_on:
             - php-app
     elk-app:
-        image: sebp/elk:540
+        image: elasticsearch:2.4.4
         container_name: es
         networks:
           vpcbr:
@@ -80,6 +80,7 @@ services:
         ports:
            - "6379:6379"
         volumes:
+            - "./redis:/var/lib/redis:rw"
             - "/etc/hosts:/etc/hosts"
 networks:
   vpcbr:
